@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Todo</title>
+    <style>
+        .update{
+            border: 2px solid red;
+            height: 100%;
+            width: 300px;
+            padding: 50px;
+            
+        }
+        .body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="body">
+        <div class="update">
+        <h1>Update Todo</h1>
+        <form method="POST">
+        <label for="title">Title</label><br>
+        <input type="text" name="title" value="{{ todo.title }}" required><br><br>
+        <label for="desc">Description</label><br>
+        <input type="text" name="desc" value="{{ todo.desc }}" required><br><br>
+        <button type="submit">Update</button>
+    </form>
+    </div>
+    </div>
+</body>
+</html>

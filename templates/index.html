@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <style>
+        .body {
+            border: 2px solid rgb(64, 55, 55, 0.4);
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .fotter {
+            border: 2px solid rgb(64, 55, 55, 0.4);
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="navBar">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Todos-App</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" href="/about">About</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="body">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="title">Todo Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="desc">Todo Description</label>
+                    <input type="text" class="form-control" id="desc" name="desc" placeholder
+                        aria-describedby="emailHelp" placeholder="Description" required>
+
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-dark">Add Todo</button>
+            </form>
+        </div>
+        <div class="fotter">
+            {% if allTodo|length==0 %}
+            <div class="alert alert-dark" role="alert">
+                No Todos Found .Add your first todo
+            </div>
+            {% else %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for todo in allTodo %}
+                    <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{todo.title}}</td>
+                        <td>{{todo.desc}}</td>
+                        <td>{{todo.date_created}}</td>
+                        <td><a href="/delete/{{todo.sno}}" type="button" class="btn btn-dark">Delete</a>
+                            <a href="/update/{{todo.sno}}" type="button" class="btn btn-dark">Update</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
